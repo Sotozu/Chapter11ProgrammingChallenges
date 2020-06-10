@@ -252,3 +252,70 @@ int main() {
 
 */
 
+// Checkpoint 11.11 - 11.15
+
+struct Rectangle {
+	int length;
+	int width;
+};
+
+void inPut(Rectangle&);
+void outPut(Rectangle);
+Rectangle changeSize();
+void changeByReference(Rectangle*);
+
+int main() {
+	Rectangle r;
+	cout << "Enter the dimensions of the rectangle.\n";
+	inPut(r); //Passed by reference function. User inserts data into the structure
+
+	cout << "The dimension and size of the rectangle is as follows.\n";
+	outPut(r); //Outputs the values in the struct 'r'
+
+	cout << endl;
+	cout << "Enter new dimensions.\n";
+	r = changeSize(); //function 'changeSize' of type 'Rectangle' asks user for new info and then return it to struct 'r'
+
+	cout << endl;
+	cout << "The dimension and size of the rectangle is as follows.\n";
+	outPut(r);
+
+	Rectangle* recPtr = nullptr; //Pointer of type Rectangle;
+
+	recPtr = &r; //Pointer 'recPtr' hold the position of the structure variable 'r';
+
+
+	changeByReference(recPtr); //Changing the contents of struct 'r' through a pointer to struct 'r'
+	cout << endl;
+	cout << "The dimension and size of the rectangle is as follows.\n";
+	outPut(r);
+	return 0;
+}
+
+void inPut(Rectangle &r) {
+	cout << "Enter length (inches): ";
+	cin >> r.length;
+	cout << "Enter width (inches): ";
+	cin >> r.width;
+
+}
+void outPut(Rectangle r) {
+	cout << "Length: " << r.length << endl;
+	cout << "Width: " << r.width << endl;
+	cout << "Area: " << r.width * r.length << endl;
+}
+
+Rectangle changeSize() {
+	Rectangle r;
+	cout << "Enter length (inches): ";
+	cin >> r.length;
+	cout << "Enter width (inches): ";
+	cin >> r.width;
+	return r;
+}
+void changeByReference(Rectangle*recPtr) {
+	recPtr->width = 1000;
+	recPtr->length = 1000;
+}
+
+// 11.15 Answer is 'B' (*rptr).width
