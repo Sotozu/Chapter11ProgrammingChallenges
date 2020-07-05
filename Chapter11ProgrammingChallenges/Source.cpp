@@ -2432,13 +2432,274 @@ bool ValidInput(int user_choice) {
 	}
 }
 */
-
+/*
 // 14. Inventory Bins
+struct Bin {
+	string part_name;
+	int part_count;
+
+};
+
+enum State {WORKING = 1, EXIT};
+
+void displayBins(Bin, int);
+void displayMenu();
+bool checkUserInput(int);
+bool checkBinInput(int);
+void AddParts(Bin*);
+void RemoveParts(Bin*);
+int main() {
+
+	const int SIZE = 10;
+
+	int user_input, user_input2, bin_num;
+
+	Bin parts[SIZE] = {
+		{"Valve", 10}, 
+		{"Bearing", 5}, 
+		{"Bushing", 15}, 
+		{"Coupling", 21}, 
+		{"Flange", 7}, 
+		{"Gear", 5}, 
+		{"Gear Housing", 5}, 
+		{"Vacuum Gripper", 25}, 
+		{"Cable", 18}, 
+		{"Rod", 12}  
+	};
+
+	cout << "-----ALL BINS-----" << endl;
+	for (int i = 0; i < SIZE; i++) {
+		displayBins(parts[i], i);
+		cout << endl;
+	}
+	do {
+		
+		displayMenu();
+		
+		do {
+			cout << "ENTER OPTION: ";
+			cin >> user_input;
+		} while (!checkUserInput(user_input));
+
+		if (user_input == 1) {
+
+			do {
+				cout << "ENTER BIN NUMBER: ";
+				cin >> bin_num;
+			} while (!checkBinInput(bin_num));
+			cout << endl;
+
+			do {
+				cout << "1. REMOVE PARTS" << endl;
+				cout << "2. ADD PARTS" << endl;
+				cout << "ENTER OPTION: ";
+				cin >> user_input2;
+			} while (!checkUserInput(user_input2));
+			cout << endl;
+
+			if (user_input2 == 1) {
+				if (parts[bin_num].part_count == 0) {
+					cout << "Bin is empty.\n";
+					cout << "Can't remove parts.\n";
+					cout << endl;
+				}
+				else {
+					RemoveParts(&parts[bin_num]);
+					cout << endl;
+				}
+				
+			}
+			else {
+				if (parts[bin_num].part_count == 20) {
+					cout << "Bin is full, can't add more parts.\n"; \
+						cout << endl;
+				}
+				else {
+					AddParts(&parts[bin_num]);
+					cout << endl;
+				}
+				
+			}
+			displayBins(parts[bin_num], (bin_num-1));
+			cout << endl;
+		}
+		cout << endl;
+
+	} while (user_input != EXIT);
+	cout << "THANK YOU! GOOD BYE." << endl;
+	return 0;
+}
+
+void displayBins(Bin parts, int count) {
+	cout << "Bin Number: " << count + 1 << endl;
+	cout << "Part Name: " << parts.part_name << endl;
+	cout << "Part Count: " << parts.part_count << endl;
+}
+
+void displayMenu() {
+	cout << "---MENU---" << endl;
+	cout << "1. SELECT A BIN" << endl;
+	cout << "2. EXIT" << endl;
+}
+
+bool checkUserInput(int user_input) {
+	if (user_input != 1 && user_input != 2) {
+		cout << "ERROR: Please enter a valid menu option.\n";
+		return false;
+	}
+	else {
+		return true;
+	}
+	
+}
+
+bool checkBinInput(int bin_num) {
+	if (bin_num < 1 || bin_num > 10) {
+		cout << "ERROR: Please enter a valid bin number.\n";
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
+void AddParts(Bin* parts) {
+	int add_parts;
+	do {
+		cout << "How many parts would you like to add?\n";
+		cout << "ENTER AMOUNT: ";
+		cin >> add_parts;
+
+		if (parts->part_count + add_parts > 30) {
+			cout << "There can only be a max number of 20 parts per bin.\n";
+			cout << "Please enter a number equal or less than " << parts->part_count << endl;
+		}
+		else {
+			parts->part_count += add_parts;
+			return;
+		}
+
+	} while (parts->part_count + add_parts > 30);
+}
+void RemoveParts(Bin* parts) {
+	int remove_parts;
+
+	do {
+		cout << "How many parts would you like to remove?\n";
+		cout << "ENTER AMOUNT: ";
+		cin >> remove_parts;
+
+		if (parts->part_count - remove_parts < 0) {
+			cout << "There are " << parts->part_count << " parts in the bin.\n";
+			cout << "Please enter a number equal or less than " << parts->part_count << endl;
+		}
+		else {
+			parts->part_count -= remove_parts;
+		}
+
+	} while (parts->part_count - remove_parts < 0);
+}
+*/
+
+// 15. Multipurpose Payroll
+
+enum TypePay{HOURLY = 1, SALARY};
+
+struct HourlyPaid {  // size 100
+	int hours_worked;
+	double hourly_rate;
+};
+
+struct Salaried { //size 150
+	double salary;
+	double bonus;
+};
+
+union Hires{ // max size = 150
+
+	HourlyPaid worker;
+	Salaried manager;
+
+};
+
+bool InputValidation(int);
+bool InputValidation(double);
 
 int main() {
+
+	Hires employee;
+
+	int user_choice;
+	double total = 0;
+
+	cout << "Worker Type" << endl;
+	cout << "1. Wage" << endl;
+	cout << "2. Salary" << endl;
+	cout << endl;
+	do {
+		cout << "ENTER OPTION (1 OR 2): ";
+		cin >> user_choice;
+		if (user_choice != 1 && user_choice != 2) {
+			cout << "ERROR: Please enter a valid choice.\n";
+		}
+	} while (user_choice != 1 && user_choice != 2);
+
+	cout << setprecision(2) << fixed << showpoint;
+
+	if (user_choice == HOURLY) {
+		do {
+			cout << "Hourly Wage: $";
+			cin >> employee.worker.hourly_rate;
+		} while (!InputValidation(employee.worker.hourly_rate));
+		do {
+			cout << "Hours Worked: ";
+			cin >> employee.worker.hours_worked;
+		} while (!InputValidation(employee.worker.hours_worked));
+
+		total = employee.worker.hourly_rate * employee.worker.hours_worked;
+
+		cout << "--------Wages Employee--------" << endl;
+		cout << "Total Pay for The Period: $" << total << endl;
+		cout << endl;
+	}
+	else if (user_choice == SALARY) {
+
+		do {
+			cout << "Yearly Salary: $";
+			cin >> employee.manager.salary;
+		} while (!InputValidation(employee.manager.salary));
+
+		cout << "Yearly Bonus: $";
+		cin >> employee.manager.bonus;
+		cout << endl;
+
+		total = employee.manager.salary + employee.manager.bonus;
+
+		cout << "--------Salaried Employee--------" << endl;
+		cout << "Total Yearly Pay: $" << total << endl;
+		cout << endl;
+	}
+	cout << "GOOD BYE.\n";
 
 	return 0;
 }
 
-
+bool InputValidation(int hours_worked) {
+	if (hours_worked < 0 || hours_worked > 80) {
+		cout << "ERROR: Please enter between 0-80 hours.\n";
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+bool InputValidation(double money_amount) {
+	if (money_amount < 0) {
+		cout << "ERROR: Please enter a positive value.\n";
+		return false;
+	}
+	else {
+		return true;
+	}
+}
 
