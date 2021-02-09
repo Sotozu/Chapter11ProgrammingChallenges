@@ -610,14 +610,8 @@ int main() {
 	const int SIZE = 12;
 	Weather month[SIZE];
 	double highest_temp, lowest_temp, total_rainfall = 0, total_average_temps = 0, 
-		average_monthly_rainfall, average_of_average_monthly_temp ;
+		average_monthly_rainfall, average_of_average_monthly_temp;
 
-
-
-
-
-
-	
 	cout << "Please enter the following data for each month.\n";
 
 	for (int i = 0; i < SIZE; i++) {
@@ -777,12 +771,6 @@ void outPut(Weather& month, string month_name) {
 		Weather month[SIZE];
 		double highest_temp, lowest_temp, total_rainfall = 0, total_average_temps = 0,
 			average_monthly_rainfall, average_of_average_monthly_temp;
-
-
-
-
-
-
 
 		cout << "Please enter the following data for each month.\n";
 
@@ -1040,7 +1028,6 @@ bool checkIfAllEmpty(const Customer&, int);
 void menu();
 void element();
 
-
 int main() {
 	int menu_choice, option2_choice, option4_choice, data_field;
 	const int SIZE = 10;
@@ -1099,7 +1086,6 @@ int main() {
 					else {
 					
 						showAllData(customer[i], i);
-
 					}
 					
 					cout << endl;
@@ -1124,15 +1110,9 @@ int main() {
 			default:
 				cout << "ERROR: Please enter a valid option.\n";
 				break;
-
 		}
 
 	} while (menu_choice != EXIT);
-
-
-	
-
-
 
 	return 0;
 }
@@ -1162,7 +1142,6 @@ void inputData(Customer &customer, int cust_num) {
 		cin >> customer.account_balance;
 
 	};
-
 
 	cout << "Last Payment Date (xx/xx/xxxx): ";
 	cin.ignore(); // flushing out the newline out of the buffer
@@ -1227,8 +1206,8 @@ void menu() {
 	cout << "4. Display A Specific Customers Data\n";
 	cout << "5. EXIT\n";
 	cout << "------------------------------\n";
-
 }
+
 void element() {
 	cout << "DATA FIELDS\n";
 	cout << "1. NAME\n";
@@ -1260,31 +1239,24 @@ bool checkIfAllEmpty(const Customer& customer, int cust_num) {
 	}
 	if (!customer.address.empty()) {
 		is_empty = false;
-
 	}
 	if (!customer.city.empty()) {
 		is_empty = false;
-
 	}
 	if (!customer.state.empty()) {
 		is_empty = false;
-
 	}
 	if (customer.zip != -1) {
 		is_empty = false;
-
 	}
 	if (customer.telephone_number.empty()) {
 		is_empty = false;
-
 	}
 	if (customer.account_balance != -1) {
 		is_empty = false;
-
 	}
 	if (!customer.last_payment_date.empty()) {
 		is_empty = false;
-
 	}
 
 	return is_empty;
@@ -1310,7 +1282,6 @@ void showSpecificData(const Customer& customer, int cust_num) {
 
 // 8. Search Function For Customer Accounts Program
 
-
 enum cust_elements { NAME = 1, ADDRESS, CITY, STATE, ZIP, TELEPHONE_NUMBER, ACCOUNT_BALANCE, LAST_PAYMENT };
 enum menu_options { ENTER_ALL_CUSTOMER_DATA = 1, ENTER_SPECIFIC_DATA, DISPLAY_ALL_CUSTOMER_DATA, DISPLAY_SPECIFIC_DATA, FIND_CUSTOMER, EXIT };
 struct Customer {
@@ -1331,12 +1302,9 @@ void showAllData(const Customer&, int);
 void showSpecificData(const Customer&, int);
 void initializeEmptyData(Customer&); // int variables need to be initialized to -1 so that they can be checked IF the user has inserted any data into them.
 void findCustomer(string);
-
 bool checkIfAllEmpty(const Customer&, int);
-
 void menu();
 void element();
-
 
 int main() {
 	int menu_choice, option2_choice, option4_choice, data_field;
@@ -1404,7 +1372,6 @@ int main() {
 				else {
 
 					showAllData(customer[i], i);
-
 				}
 
 				cout << endl;
@@ -1444,7 +1411,6 @@ int main() {
 				//mystring.c_str(customer[i].name)
 				//cout << strstr(customer[i].name.c_str(), find_cust.c_str());
 				//cout << customer[i].name.find(find_cust, 0) << endl;
-
 			}
 
 			if (found_match == true) {
@@ -1461,18 +1427,13 @@ int main() {
 		default:
 			cout << "ERROR: Please enter a valid option.\n";
 			break;
-
 		}
 
 	} while (menu_choice != EXIT);
 
-
-
-
-
-
 	return 0;
 }
+
 void inputData(Customer& customer, int cust_num) {
 	cout << "Customer: " << cust_num + 1 << endl;
 	cout << "Name: ";
@@ -1499,7 +1460,6 @@ void inputData(Customer& customer, int cust_num) {
 		cin >> customer.account_balance;
 
 	};
-
 
 	cout << "Last Payment Date (xx/xx/xxxx): ";
 	cin.ignore(); // flushing out the newline out of the buffer
@@ -1567,6 +1527,7 @@ void menu() {
 	cout << "------------------------------\n";
 
 }
+
 void element() {
 	cout << "DATA FIELDS\n";
 	cout << "1. NAME\n";
@@ -1598,31 +1559,24 @@ bool checkIfAllEmpty(const Customer& customer, int cust_num) {
 	}
 	if (customer.address != "-1") {
 		is_empty = false;
-
 	}
 	if (customer.city != "-1") {
 		is_empty = false;
-
 	}
 	if (customer.state != "-1") {
 		is_empty = false;
-
 	}
 	if (customer.zip != -1) {
 		is_empty = false;
-
 	}
 	if (customer.telephone_number != "-1") {
 		is_empty = false;
-
 	}
 	if (customer.account_balance != -1) {
 		is_empty = false;
-
 	}
 	if (customer.last_payment_date != "-1") {
 		is_empty = false;
-
 	}
 
 	return is_empty;
@@ -1654,7 +1608,6 @@ void showSpecificData(const Customer& customer, int cust_num) {
 
 //9. Speakers' Bureau
 
-
 enum menu {ENTER_ALL = 1, ENTER_SPECIFIC, DISPLAY_ALL, EXIT };
 struct Speaker{
 	string name;
@@ -1684,8 +1637,6 @@ int main() {
 		cout << "\nENTER CHOICE: ";
 		cin >> menu_choice;
 		cin.ignore();
-
-
 		switch (menu_choice) {
 		case (ENTER_ALL):
 			cout << "\nENTER DATA\n\n";
@@ -1696,6 +1647,7 @@ int main() {
 			cout << endl;
 			break;
 		case (ENTER_SPECIFIC):
+
 			cout << "WHICH SPEAKER\n";
 			for (int i = 0; i < SIZE; i++) {
 				cout << "SPEAKER " << i + 1 << endl;
@@ -1712,7 +1664,6 @@ int main() {
 			for (int i = 0; i < SIZE; i++) {
 				if (checkIfEmpty(speaker[i], i) == true) {
 					cout << "Speaker " << i + 1 << ": EMPTY" << endl;
-
 				}
 				else {
 					displayData(speaker[i], i);
@@ -1730,8 +1681,6 @@ int main() {
 	for (int i = 0; i < SIZE; i++) {
 
 	}
-
-	
 
 	return 0;
 }
@@ -1788,11 +1737,9 @@ bool checkIfEmpty(Speaker& speaker, int speaker_num) {
 	}
 	if (speaker.speaking_topic != "-1") {
 		is_empty = false;
-
 	}
 	if (speaker.telephone_number != "-1") {
 		is_empty = false;
-
 	}
 	if (speaker.fee != -1) {
 		is_empty = false;
@@ -1864,7 +1811,6 @@ int main() {
 			for (int i = 0; i < SIZE; i++) {
 				if (checkIfEmpty(speaker[i], i) == true) {
 					cout << "Speaker " << i + 1 << ": EMPTY" << endl;
-
 				}
 				else {
 					displayData(speaker[i], i);
@@ -1905,9 +1851,6 @@ int main() {
 		}
 	} while (menu_choice != EXIT);
 
-
-
-
 	return 0;
 }
 
@@ -1927,7 +1870,6 @@ void insertData(Speaker& speaker, int speaker_num) {
 		}
 	} while (speaker.fee < 0);
 	cin.ignore();
-
 }
 
 void menu() {
@@ -1937,7 +1879,6 @@ void menu() {
 	cout << "3. DISPLAY ALL DATA" << endl;
 	cout << "4. FIND SPEAKER BY TOPIC" << endl;
 	cout << "5. EXIT" << endl;
-
 }
 
 void displayData(Speaker& speaker, int speak_num) {
@@ -1965,11 +1906,9 @@ bool checkIfEmpty(Speaker& speaker, int speaker_num) {
 	}
 	if (speaker.speaking_topic != "-1") {
 		is_empty = false;
-
 	}
 	if (speaker.telephone_number != "-1") {
 		is_empty = false;
-
 	}
 	if (speaker.fee != -1) {
 		is_empty = false;
@@ -2602,7 +2541,7 @@ void RemoveParts(Bin* parts) {
 */
 
 // 15. Multipurpose Payroll
-
+/*
 enum TypePay{HOURLY = 1, SALARY};
 
 struct HourlyPaid {  // size 100
@@ -2702,4 +2641,5 @@ bool InputValidation(double money_amount) {
 		return true;
 	}
 }
+*/
 
